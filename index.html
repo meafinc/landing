@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>meaf.inc</title>
+    <link rel="stylesheet" href="/style.css">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.173.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.173.0/examples/jsm/"
+          }
+        }
+      </script>
+</head>
+<body>
+    <div id="globe-container"></div>
+    <main class="container">
+        <h1 class="company-name">meaf.inc</h1>
+        <div class="terminal">
+            <span class="prompt">$</span>
+            <span class="typed-text"></span>
+            <span class="cursor">|</span>
+        </div>
+    </main>
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
