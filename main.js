@@ -150,8 +150,14 @@ class Globe {
     }
 }
 
+function initGlitchEffect() {
+    const companyName = document.querySelector('.company-name');
+    companyName.setAttribute('data-text', companyName.textContent);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const textElement = document.querySelector('.typed-text');
     new TypeWriter(textElement, questions);
     new Globe();
+    initGlitchEffect();
 });
