@@ -163,9 +163,6 @@ class Globe {
             // Reorient the pin to point outward from the sphere center
             mesh.lookAt(0, 0, 0);
             mesh.rotateX(Math.PI / 2);
-    
-            // Fade out pin
-            // mesh.material.opacity = 1 - (age / pinInfo.lifespan);
         });
     }
 

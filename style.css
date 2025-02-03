@@ -109,6 +109,14 @@ body::after {
     margin-bottom: 2rem;
     letter-spacing: 2px;
     position: relative;
+    animation: gradientColorChange 10s infinite; /* Apply the animation */
+}
+
+@keyframes gradientColorChange {
+    0% { color: #fefefe; } /* Red at the start */
+    33% { color: #00ff04; } /* Green in the middle */
+    66% { color: #ff00dd; } /* Blue at the end */
+    100% { color: #fbff00; } /* Back to red for a loop */
 }
 
 .company-name::before {
