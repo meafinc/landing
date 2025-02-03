@@ -95,9 +95,16 @@ class Globe {
         this.scheduleNextPin();
     }
 
+    randomColor() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
     createPin() {
         const pinGeometry = new THREE.ConeGeometry(0.2, 0.5, 8);
-        const pinMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const pinMaterial = new THREE.MeshBasicMaterial({ color: this.randomColor() });
         const pin = new THREE.Mesh(pinGeometry, pinMaterial);
 
         // Random position on sphere surface
@@ -129,6 +136,39 @@ class Globe {
         }, delay);
     }
 
+    updatePins() {
+        const now = Date.now();
+        this.pins.forEach((pinInfo, index) => {
+            const age = now - pinInfo.createdAt;
+            const { mesh } = pinInfo;
+            
+            if (age > pinInfo.lifespan) {
+                // Remove the expired pin from the scene
+                this.scene.remove(mesh);
+                // Remove the expired pin from the pins array
+                this.pins.splice(index, 1);
+                return; // Skip further updates for this pin
+            }
+    
+            // Calculate the parent world position of the mesh (which is the sphere in this case)
+            const parentWorldPosition = new THREE.Vector3().setFromMatrixPosition(mesh.parent.matrixWorld);
+    
+            // Create a local coordinate system for the pin relative to its parent
+            const localPinPos = mesh.position.clone();
+    
+            // Apply inverse rotation of the sphere to place the pin on the surface
+            mesh.parent.rotation.set(-this.sphere.rotation.x, -this.sphere.rotation.y, -this.sphere.rotation.z);
+            mesh.position.copy(localPinPos).normalize().multiplyScalar(5);
+    
+            // Reorient the pin to point outward from the sphere center
+            mesh.lookAt(0, 0, 0);
+            mesh.rotateX(Math.PI / 2);
+    
+            // Fade out pin
+            // mesh.material.opacity = 1 - (age / pinInfo.lifespan);
+        });
+    }
+
     animate() {
         requestAnimationFrame(() => this.animate());
 
@@ -137,17 +177,7 @@ class Globe {
         this.sphere.rotation.x += 0.001;
 
         // Update pins
-        const now = Date.now();
-        this.pins = this.pins.filter(pin => {
-            const age = now - pin.createdAt;
-            if (age > pin.lifespan) {
-                this.scene.remove(pin.mesh);
-                return false;
-            }
-            // Fade out pin
-            pin.mesh.material.opacity = 1 - (age / pin.lifespan);
-            return true;
-        });
+        this.updatePins();
 
         this.renderer.render(this.scene, this.camera);
     }
