@@ -69,7 +69,8 @@ body::after {
         backdrop-filter: brightness(2) hue-rotate(90deg);
         transform: translateX(2px);
     }
-    94% {
+    /* beware epileptics! */
+    /* 94% {
         opacity: 0.8;
         backdrop-filter: brightness(1.5) hue-rotate(-90deg);
         transform: translateX(-2px);
@@ -83,7 +84,7 @@ body::after {
         opacity: 0.5;
         backdrop-filter: saturate(200%) blur(2px);
         transform: translateX(-1px);
-    }
+    } */
 }
 
 #globe-container {
@@ -101,28 +102,6 @@ body::after {
     width: 100%;
     position: relative;
     z-index: 1;
-}
-
-
-.event {
-    position: absolute;
-    top: -10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: translateY(-100%);
-    animation: moveEvent linear;
-    animation-duration: 10s;
-}
-
-.event-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.event-text {
-    font-size: 0.8rem;
-    white-space: nowrap;
 }
 
 .company-name {
@@ -232,4 +211,24 @@ body::after {
         left: -10%;
         opacity: 0;
     }
+}
+
+/* Add basic styling for the header and mail link */
+.top-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.mail-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.mail-link:hover {
+    text-decoration: underline;
 }

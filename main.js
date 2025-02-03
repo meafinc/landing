@@ -1,9 +1,12 @@
 import * as THREE from 'three';
 
 const questions = [
+    "What is Operation Mockingbird?",
     "Who built Stonehenge?",
-    "What happened to the Mary Celeste?",
+    "What really happened to Jimmy Hoffa?",
     "Where will innovation take us next?",
+    "What happened to the Mary Celeste?",
+    "How were the Egyptian pyramids constructed?",
     "What happened to the vanished colonists at Roanoke?"
 ];
 
