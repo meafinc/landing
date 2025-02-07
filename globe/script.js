@@ -1,13 +1,11 @@
-import * as THREE from 'three';
+const THREE = await import("three");
 
 const questions = [
-    "What is Operation Mockingbird?",
-    "Who built Stonehenge?",
-    "What really happened to Jimmy Hoffa?",
-    "Where will innovation take us next?",
-    "What happened to the Mary Celeste?",
-    "How were the Egyptian pyramids constructed?",
-    "What happened to the vanished colonists at Roanoke?"
+    "Creates a modernization plan for our codebase with security and technical debt priorities.",
+    "Helps me write my PhD dissertation by analyzing my quantum computing research data.",
+    "Analyzes my tennis match video and designs a personalized training program.",
+    "Designs an adaptive AI companion system for my grandmother with early dementia.",
+    "Develops a complete business strategy for a sustainable fashion brand launch.",
 ];
 
 class TypeWriter {
@@ -23,7 +21,7 @@ class TypeWriter {
 
     type() {
         const currentWord = this.words[this.wordIndex];
-        const typeSpeed = this.isDeleting ? 50 : 100;
+        const typeSpeed = this.isDeleting ? 10 : 50;
 
         if (this.isDeleting) {
             this.txt = currentWord.substring(0, this.txt.length - 1);
@@ -186,8 +184,19 @@ function initGlitchEffect() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    loadScript();
+});
+
+function loadScript() {
     const textElement = document.querySelector('.typed-text');
     new TypeWriter(textElement, questions);
     new Globe();
-    initGlitchEffect();
-});
+    initGlitchEffect(); 
+}
+
+(async function() {
+    const init = () => {
+        loadScript();
+    };
+    init();
+})();

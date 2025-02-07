@@ -1,0 +1,230 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #000;
+  overflow: hidden;
+  font-family: "Courier New", monospace;
+}
+
+.terminal {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+.terminal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  animation: scroll 12s linear infinite;
+}
+
+.terminal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation: slideDown 0.3s linear infinite;
+}
+
+.content {
+  color: #c9cdc9;
+  text-shadow: 0 0 5px #c9cdc9;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre;
+  animation: flicker 0.3s infinite;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.98;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.98;
+  }
+}
+@keyframes flickerHeading {
+  0% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 0.9;
+  }
+  93% {
+    opacity: 0.4;
+  }
+  94% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+.fixed-heading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #33ff33;
+  text-shadow: 0 0 10px #33ff33;
+  font-size: 4rem;
+  z-index: 100;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 20px rgba(51, 255, 51, 0.3);
+  animation: gradientColorChange 10s infinite, flickerHeading 2s infinite;
+}
+.fixed-heading-2 {
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #33ff33;
+  text-shadow: 0 0 10px #33ff33;
+  font-size: 1rem;
+  z-index: 100;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 20px rgba(51, 255, 51, 0.3);
+  animation: gradientColorChange 10s infinite, flickerHeading 2s infinite;
+}
+
+.progress-container {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  z-index: 100;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #33ff33;
+  box-shadow: 0 0 10px rgba(51, 255, 51, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #ed1d71;
+  box-shadow: 0 0 15px #33ff33;
+  animation: progressAdvance 10s linear infinite, progressFlicker 0.3s infinite;
+}
+
+.progress-text {
+  color: #33ff33;
+  text-shadow: 0 0 5px #33ff33;
+  margin-top: 10px;
+  font-size: 1rem;
+  animation: gradientColorChange 10s infinite, textFlicker 1s infinite;
+}
+
+@keyframes progressAdvance {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes progressFlicker {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.company-name {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  position: relative;
+  animation: gradientColorChange 10s infinite; /* Apply the animation */
+}
+@keyframes gradientColorChange {
+  0% {
+    color: #fefefe;
+  } /* Red at the start */
+  33% {
+    color: #00ff04;
+  } /* Green in the middle */
+  66% {
+    color: #ff00dd;
+  } /* Blue at the end */
+  100% {
+    color: #fbff00;
+  } /* Back to red for a loop */
+}

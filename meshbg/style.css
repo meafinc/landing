@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #030303;
+}
+
+#meshCanvas {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
+.fixed-heading {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #33ff33;
+    text-shadow: 0 0 10px #33ff33;
+    font-size: 4rem;
+    z-index: 100;
+    text-align: center;
+    font-family: "Courier New", monospace;
+    background: rgba(0, 0, 0, 0.0);
+    padding: 20px;
+    /* border: 2px solid #ffffff; */
+    /* box-shadow: 0 0 20px rgba(51, 255, 51, 0.3); */
+    animation: gradientColorChange 10s infinite, flickerHeading 2s infinite;
+  }
+
+  @keyframes gradientColorChange {
+    0% {
+      color: #fefefe;
+    } /* Red at the start */
+    33% {
+      color: #00ff04;
+    } /* Green in the middle */
+    66% {
+      color: #ff00dd;
+    } /* Blue at the end */
+    100% {
+      color: #fbff00;
+    } /* Back to red for a loop */
+  }
+
+  @keyframes flickerHeading {
+    0% {
+      opacity: 0.9;
+    }
+    50% {
+      opacity: 1;
+    }
+    92% {
+      opacity: 0.9;
+    }
+    93% {
+      opacity: 0.4;
+    }
+    94% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0.9;
+    }
+  }
