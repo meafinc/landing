@@ -1,0 +1,189 @@
+:root {
+    --primary-color: #6e00ff;
+    --secondary-color: #00fff2;
+    --bg-color: #000;
+    --text-color: #fff;
+    --editor-bg: #1e1e1e;
+    --cursor-color: #fff;
+    --line-number-color: #666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* .company-name {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+} */
+
+.company-name {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    position: relative;
+    animation: gradientColorChange 10s infinite; /* Apply the animation */
+}
+
+@keyframes gradientColorChange {
+    0% { color: #fefefe; } /* Red at the start */
+    33% { color: #00ff04; } /* Green in the middle */
+    66% { color: #ff00dd; } /* Blue at the end */
+    100% { color: #fbff00; } /* Back to red for a loop */
+}
+
+.company-name::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    clip-path: inset(0 0 0 0);
+    animation: textGlitch 5s infinite;
+}
+
+@keyframes textGlitch {
+    0%, 95%, 100% {
+        clip-path: inset(0 0 0 0);
+        transform: translateX(-50%) translateY(0);
+        text-shadow: none;
+    }
+    96% {
+        clip-path: inset(20% 0 30% 0);
+        transform: translateX(-51%) translateY(2px);
+        text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+    }
+    97% {
+        clip-path: inset(50% 0 10% 0);
+        transform: translateX(-49%) translateY(-2px);
+        text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
+    }
+    98% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translateX(-50%) translateY(1px);
+        text-shadow: 1px -1px #ff0000, -1px 1px #00ffff;
+    }
+}
+
+.editor {
+    background: var(--editor-bg);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: left;
+    font-family: 'Courier New', monospace;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    min-width: 420px;
+}
+
+.editor-header {
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.editor-content {
+    display: flex;
+    min-height: 200px;
+    margin-bottom: 1rem;
+}
+
+.line-numbers {
+    color: var(--line-number-color);
+    padding-right: 1rem;
+    border-right: 1px solid #333;
+    text-align: right;
+    user-select: none;
+}
+
+.text-content {
+    padding-left: 1rem;
+    position: relative;
+    flex-grow: 1;
+}
+
+.line {
+    height: 1.5em;
+    white-space: pre;
+}
+
+.cursor {
+    position: absolute;
+    width: 0.6em;
+    height: 1.2em;
+    background-color: var(--cursor-color);
+    opacity: 0;
+    animation: blink 1s infinite;
+}
+
+.cursor.typing {
+    opacity: 1;
+    animation: none;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.vim-mode {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .company-name {
+        font-size: 3rem;
+    }
+    .editor {
+        font-size: 0.9rem;
+    }
+}

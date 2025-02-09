@@ -51,8 +51,6 @@ class TypeWriter {
     }
 }
 
-
-
 class Globe {
     constructor() {
         this.scene = new THREE.Scene();
